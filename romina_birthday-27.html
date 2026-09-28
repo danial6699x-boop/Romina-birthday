@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>برای رومینا ❤️</title>
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0; min-height:100vh; overflow:hidden;
+  font-family:Tahoma,Arial,sans-serif;
+  background:radial-gradient(circle at top,#ffb6c9,#7d183e 70%);
+  color:white; display:flex; align-items:center; justify-content:center;
+}
+.page{width:100%; min-height:100vh; display:flex; align-items:center; justify-content:center; padding:20px}
+.card{
+  width:min(520px,94vw); text-align:center; padding:38px 25px;
+  border-radius:30px; background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.25); backdrop-filter:blur(12px);
+  box-shadow:0 20px 60px rgba(0,0,0,.25);
+}
+.heart{
+  width:150px;height:135px;margin:0 auto 20px;position:relative;
+  animation:beat 1.25s infinite; cursor:pointer;
+}
+.heart:before,.heart:after{
+  content:"";position:absolute;top:20px;width:82px;height:120px;
+  background:#ff315f;border-radius:55px 55px 0 0;
+}
+.heart:before{left:75px;transform:rotate(45deg);transform-origin:0 100%}
+.heart:after{left:0;transform:rotate(-45deg);transform-origin:100% 100%}
+.heart span{position:absolute;z-index:2;left:0;right:0;top:62px;font-size:30px}
+@keyframes beat{50%{transform:scale(1.08)}}
+h1{font-size:32px;margin:10px 0}
+p{line-height:2;color:#ffe8ef}
+input{
+  width:100%;padding:15px 18px;border:0;border-radius:15px;
+  outline:none;font-size:16px;text-align:center;margin:12px 0;
+}
+button{
+  border:0;border-radius:15px;padding:14px 30px;cursor:pointer;
+  background:#fff;color:#a51d4d;font-size:17px;font-weight:bold;
+}
+#error{height:25px;color:#ffd2df}
+.hidden{display:none}
+.message h1{font-size:40px}
+.confetti{position:fixed;top:-20px;font-size:20px;animation:fall linear forwards;pointer-events:none}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:.2}}
+.small{font-size:13px;opacity:.75}
+</style>
+</head>
+<body>
+<div id="login" class="page">
+  <div class="card">
+    <div class="heart" onclick="focusPass()"><span>❤️</span></div>
+    <h1>یه چیز کوچیک برای رومینا...</h1>
+    <p>برای ورود، رمز مخصوصمون رو وارد کن 💌</p>
+    <input id="pass" type="password" placeholder="رمز ورود..." autocomplete="off">
+    <button onclick="unlock()">باز کردن نامه ❤️</button>
+    <div id="error"></div>
+    <div class="small">این صفحه فقط برای تو ساخته شده ✨</div>
+  </div>
+</div>
+
+<div id="gift" class="page hidden">
+  <div class="card message">
+    <div style="font-size:65px">🎂❤️🎈</div>
+    <h1>تولدت مبارک رومینا!</h1>
+    <p>
+      رومینای عزیز،<br>
+      امیدوارم امروز پر از لبخند، اتفاق‌های قشنگ و لحظه‌هایی باشه
+      که تا مدت‌ها یادت بمونه. ❤️
+    </p>
+    <p>این سایت کوچیک فقط یه بهونه‌ست برای گفتن اینکه<br><b>تولدت مبارک! 🌹</b></p>
+    <div style="font-size:42px">💌✨🫶🏻</div>
+  </div>
+</div>
+
+<script>
+const PASSWORD = "dodol";
+function focusPass(){document.getElementById("pass").focus()}
+function unlock(){
+  const p=document.getElementById("pass").value.trim();
+  if(p===PASSWORD){
+    document.getElementById("login").classList.add("hidden");
+    document.getElementById("gift").classList.remove("hidden");
+    confetti();
+  }else{
+    document.getElementById("error").textContent="رمز درست نیست؛ دوباره امتحان کن ❤️";
+  }
+}
+document.getElementById("pass").addEventListener("keydown",e=>{if(e.key==="Enter")unlock()});
+function confetti(){
+  const chars=["❤️","💗","💕","✨","🎈","🌹","💖"];
+  for(let i=0;i<45;i++){
+    const x=document.createElement("div"); x.className="confetti";
+    x.textContent=chars[Math.floor(Math.random()*chars.length)];
+    x.style.left=Math.random()*100+"vw";
+    x.style.animationDuration=(3+Math.random()*4)+"s";
+    x.style.animationDelay=Math.random()*1.5+"s";
+    document.body.appendChild(x);
+    setTimeout(()=>x.remove(),8000);
+  }
+}
+</script>
+</body>
+</html>
